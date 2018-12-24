@@ -1,0 +1,393 @@
+*{
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+button,input[type='button']{-webkit-appearance: none}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+a,a:visited{text-decoration: none}
+ul{list-style: none;}
+.mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 4;
+}
+.before(@left,@top,@width,@height){
+  content:"";
+  position: absolute;
+  left: @left;
+  top: @top;
+  width: @width;
+  height: @height;
+}
+.strok-outside(@border:1px,@color:white) {
+    text-shadow: 0 @border @color, @border 0 @color, -@border 0 @color, 0 -@border @color;
+}
+.support{
+  display: block;
+  text-align: center;
+  font-size: .26rem;
+  color: white;
+  margin-bottom: .3rem;
+}
+#index{
+  width: 100%;
+  height: 100%;
+  background: url("../img/index-bg.png") #0F061A no-repeat;
+  background-size: 100% auto;
+  .rule-btn{
+    float: right;
+    margin-top: .3rem;
+    background: #FDA606;
+    color: white;
+    padding: 0 .3rem;
+    font-size: .28rem;
+    line-height: .5rem;
+    border-radius: .07rem 0 0 .07rem;
+  }
+  .my-prize{
+    padding: 8rem 0 0 .3rem;
+    .prize-icon{
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border: 2px solid white;
+      background-color: #FFCA06;
+      position: relative;
+      &:before{
+        .before(.2rem,.2rem,.6rem,.6rem);
+        z-index: 3;
+        background: url("../img/gift-icon.png") no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .prize-txt{
+      display: block;
+      font-size: .28rem;
+      color: #DD5103;
+      .strok-outside;
+    }
+  }
+  .start-game{
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    width: 3.5rem;
+    margin: .2rem auto .5rem;
+    background: url("../img/btn-bg.png") no-repeat;
+    background-size: 100% 100%;
+    .strok-outside;
+    a,a:visited{
+      color: #DD5103;
+      font-size: .32rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  }
+  .win{
+    display: none;
+    section{
+      position: absolute;
+      width: 6rem;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: .1rem;
+      padding: .2rem;
+      box-sizing: border-box;
+      >div.box{
+        border-radius: .1rem;
+        border: 1px dashed #FFE087;
+        padding: .3rem;
+        box-sizing: border-box;
+        h3{
+          font-size: .32rem;
+          text-align: center;
+          margin-bottom: .3rem;
+          span{
+            display: inline-block;
+            width: 2px;
+            height: .3rem;
+            background: #DD5204;
+            margin: 0 .04rem;
+            transform: rotate(15deg);
+            vertical-align: middle;
+          }
+        }
+        .content{
+          max-height: 5rem;
+          min-height: 4rem;
+          overflow: auto;
+          h4{
+            font-size: .32rem;
+            margin-top: .2rem;
+          }
+          p{
+            font-size: .28rem;
+            border-bottom: 1px dashed #DE5509;
+            position: relative;
+            padding-left: .3rem;
+            line-height: .4rem;
+            padding-bottom: .15rem;
+            margin-top: .15rem;
+            &:before{
+              .before(.05rem,.15rem,.1rem,.1rem);
+              background: #DD5103;
+              border-radius: 50%;
+            }
+          }
+          div{
+            text-align: center;
+            line-height: .5rem;
+            color: #DD5204;
+            margin-top: 1.5rem;
+          }
+        }
+      }
+      .close-win{
+        width: .5rem;
+        height: .5rem;
+        border: 1px solid white;
+        border-radius: 50%;
+        position: absolute;
+        top:-.25rem;
+        right: -.25rem;
+        background: #DD5103;
+        text-align: center;
+        line-height: .4rem;
+        color: white;
+        box-sizing: border-box;
+        font-size: .45rem;
+      }
+    }
+  }
+  .rule{
+    .content{
+      max-height: 6rem!important;
+    }
+  }
+  .prize{
+    p{
+      padding-left: 0!important;
+      span{
+        float: right;
+      }
+      &:before{
+        display: none;
+      }
+    }
+    .getMoney{
+      height: 1.2rem;
+      line-height: 1.1rem!important;
+      text-align: center;
+      color: #DD5103;
+      font-size: .32rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      width: 3.5rem;
+      margin: .2rem auto 0;
+      background: url("../img/btn-bg.png") no-repeat;
+      background-size: 100% 100%;
+      .strok-outside;
+    }
+  }
+}
+#game{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  //计时器
+  .timer{
+    padding: .25rem .4rem 0;
+    .pumpNum{
+      position: absolute;
+      top:.3rem;
+      left: .4rem;
+      i{
+        display: inline-block;
+        width: .68rem;
+        height: .68rem;
+        background: url("../img/pumpkin.png") no-repeat;
+        background-size: 100% 100%;
+        vertical-align: -.1rem;
+      }
+      span{
+        font-size: .45rem;
+        color: #DF4911;
+        .strok-outside;
+      }
+    }
+    .time{
+      text-align: center;
+      font-size: .6rem;
+      color: #DF4911;
+      .strok-outside(1px,white);
+    }
+  }
+  //奔走的南瓜
+  .run-pumpkin{
+    width: 100%;
+    position: absolute;
+    bottom: 4rem;
+    height: 5rem;
+    span{
+      display: inline-block;
+      width: 1.55rem;
+      height: 1.55rem;
+      background: url("../img/pumpkin.png") no-repeat;
+      background-size: 100% 100%;
+      position: absolute;
+      right: -1.55rem;
+      top:1rem;
+      &.on{
+        &:before{
+          z-index: -1;
+          .before(15%,90%,70%,30%);
+        }
+      }
+      &:before{
+        .before(15%,100%,70%,30%);
+        background: rgba(0,0,0,.5);
+        border-radius: 50%;
+      }
+    }
+  }
+  //煮锅
+  .pan{
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    left: calc(~"50% - 1.5rem");
+    bottom: .6rem;
+  }
+  .support{
+    position: absolute;
+    width: 100%;
+    margin-bottom: 0!important;
+    bottom: .15rem!important;
+  }
+  //游戏结束
+  .gameOver{
+    section{
+      min-height: 5.8rem;
+      background: url("../img/win-bg.png") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  .win{
+    //display: none;
+    section{
+      position: absolute;
+      width: 6rem;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      border-radius: .1rem;
+      box-sizing: border-box;
+      text-align: center;
+      h4{
+        font-size: .5rem;
+        color: #DD5103;
+        .strok-outside;
+        padding-top: .06rem;
+      }
+      p{
+        line-height: .75rem;
+        &:nth-of-type(1){
+          font-size: .34rem;
+          margin: .3rem auto;
+        }
+        &.inter{
+          color: #DD5103;
+          font-size: .48rem;
+        }
+        &.tip{
+          font-size: .28rem;
+        }
+      }
+      .btn{
+        display: block;
+        height: 1.2rem;
+        line-height: 1.2rem;
+        text-align: center;
+        color: #DD5103;
+        font-size: .32rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        width: 3.5rem;
+        background: url("../img/btn-bg.png") no-repeat;
+        background-size: 100% 100%;
+        .strok-outside;
+        position: absolute;
+        left:calc(~"50% - 1.75rem");
+        top:calc(~"100% + .45rem");
+      }
+      img{
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+    }
+  }
+  //中奖啦
+  .getPrize{
+    display: none;
+    section{
+      top: 40%!important;
+      padding-top: 1.95rem;
+      min-height: 5.8rem;
+      width: 6.5rem!important;
+      background: url("../img/prize-bg.png") no-repeat;
+      background-size: 100% 100%;
+      p{
+        color: #DD5103;
+        text-align: center;
+      }
+      .money{
+        font-size: .4rem;
+        span{
+          font-weight: 700;
+          font-size: .88rem;
+        }
+      }
+      .noMoney{
+        font-size: .32rem;
+      }
+      .beSure{
+        display: block;
+        height: 1.2rem;
+        line-height: 1.2rem;
+        text-align: center;
+        color: #DD5103;
+        font-size: .32rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        width: 3.5rem;
+        background: url("../img/btn-bg.png") no-repeat;
+        background-size: 100% 100%;
+        .strok-outside;
+        position: absolute;
+        left:calc(~"50% - 1.75rem");
+        top:calc(~"100% + .45rem");
+      }
+    }
+  }
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万圣狂欢，中大奖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="js/jquery-2.1.3.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/rem.js"></script>
+    <style>
+        body{
+            background: url("img/game-bg.png") #5C333E center bottom fixed no-repeat;
+            background-size: 100% auto;
+            position: relative;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div class="timer">
+            <div class="pumpNum">
+                <i class="pump"></i>
+                <span class="catchNum">0</span>
+            </div>
+            <div class="time"><span></span>s</div>
+        </div>
+        <!--奔走的南瓜-->
+        <div class="run-pumpkin">
+            <span class="pumpkin on"></span>
+        </div>
+        <!--煮锅-->
+        <div class="pan"></div>
+        <!--游戏结束-->
+        <div class="gameOver mask win" style="display: none;">
+            <section>
+                <h4>游戏结束</h4>
+                <p>本次游戏获得</p>
+                <img src="img/pumpkin.png" alt="">
+                <p class="inter"></p>
+                <p class="tip">满120积分即可参与抽奖</p>
+                <!--低于120积分再玩一次-->
+                <a class="onceAgain btn" onclick="window.location.reload()">再玩一次</a>
+                <!--满120积分抽奖-->
+                <a class="drawNow btn" onclick="$('.gameOver').hide();$('.getPrize').show()">立即抽奖</a>
+            </section>
+        </div>
+        <!--中奖啦-->
+        <div class="getPrize mask win">
+            <section>
+                <!--<h4>中奖啦</h4>-->
+                <!--<p>恭喜您，获得现金红包</p>-->
+                <!--<p class="money">￥<span>0.88</span></p>-->
+            <!--未中奖-->
+                <h4>很遗憾</h4>
+                <p>这次您没有中奖！</p>
+                <p class="noMoney">参与游戏即可获得更多抽奖机会哟~</p>
+                <a class="beSure" onclick="$('.getPrize').hide();window.location.href='index.html'">确定</a>
+            </section>
+        </div>
+    </div>
+</body>
+<script>
+    var param={
+        ppkTime:30,//单次游戏总时间
+        t:300,//跳一下需要的时间
+        ppkNum:0,//抓到的南瓜数量
+        out_time:500,//南瓜出来的速度
+        inter:10//抓一个南瓜所得积分
+    };
+    function CatchPumpkin(fig){
+        this.out_time=fig.out_time;
+        this.ppkTime=fig.ppkTime;
+        this.ppkNum=fig.ppkNum;
+        this.inter=fig.inter;
+        this.t=fig.t;
+        this.init=function(){
+          let that=this;
+            that.jump();
+            that.randomOut();
+            that.timer();
+            $(".catchNum").html(that.ppkNum)
+        };
+        var timer2,timer3;
+//        南瓜跳
+        this.jump=function(){
+            let that=this;
+            var leftN=(Math.random()*20+20);
+            timer2=setInterval(function(){
+                $(".pumpkin").removeClass("on").animate({"left":"-="+leftN+"px","top":"-=20px"},that.t/2);
+                $(".pumpkin").animate({"left":"-="+leftN+"px","top":"+=20px"},that.t/2,function(){
+                    $(".pumpkin").addClass("on");
+                });
+            },that.t);
+        };
+//        随机南瓜
+        this.randomOut=function(){
+            let that=this;
+            timer3=setInterval(function(){
+                var topN=(Math.random()*3);
+                $(".run-pumpkin").append("<span class='pumpkin on' style='top:"+topN+"rem;'</span>");
+                that.catch();
+                that.jump();
+            },that.out_time)
+        };
+//        倒计时
+        this.timer=function(){
+            let that=this;
+            $(".time span").html(that.ppkTime);
+            var timer1=setInterval(function(){
+                that.t-=5;
+                $(".pumpkin").each(function(i,e){
+                    if(e.offsetLeft<-155){
+                        e.remove();
+                    }
+                });
+                clearInterval(timer2);
+                if(that.ppkTime>0){
+                    that.ppkTime-=1;
+                    if(that.ppkTime<10){
+                        that.ppkTime="0"+that.ppkTime;
+                    }
+                }else{
+                    $(".pumpkin").remove();
+                    clearInterval(timer1);
+                    clearInterval(timer2);
+                    clearInterval(timer3);
+                    //游戏时间到
+                    var totalInter = that.ppkNum*that.inter;
+                    //本轮总积分
+                    $(".inter").html(totalInter+"积分")
+                    //判断是否满120积分
+                    if(totalInter<120){
+                       $(".drawNow").hide();
+                    }else {
+                        $(".onceAgain").hide()
+                    }
+                    $(".gameOver").show();
+                }
+                $(".time span").html(that.ppkTime);
+            },1000)
+        };
+//        抓南瓜
+        this.catch=function() {
+            var that=this;
+            // 拖曳
+            $(".pumpkin").each(function(){
+                var this_ = $(this)
+                var pan,pumpkin_top,
+                        pan_left, pan_right, pan_top,
+                        this_left,this_top;
+                this_.on('touchstart', function(evt) {
+                    pan=$(".pan");
+                    pumpkin_top = this_.parent().position().top;
+                    pan_left = pan.position().left;//锅的左边距
+                    pan_right = pan.position().left+pan.width();//锅的右边距
+                    pan_top = pan.position().top;//锅的上边距
+                    var e = event || evt;
+                    e.preventDefault();
+                }).on('touchmove', function(evt) {
+                    var e = event || evt;
+                    e.preventDefault();
+                    if (e.targetTouches.length == 1) {
+                        var touch = e.targetTouches[0];  // 把元素放在手指所在的位置
+                        this_.css("left",(touch.pageX- parseInt(this_.width())/2 + 'px'));
+                        this_.css("top",(touch.pageY -pumpkin_top - parseInt(this_.height())/2 + 'px'));
+                        this_.stop();
+                        this_left = this_.position().left;
+                        this_top = this_.position().top;
+                        //到达锅的区域
+                        if(this_left>pan_left && this_left<pan_right && this_top+pumpkin_top>pan_top){
+                            this_.remove();
+                            $(".catchNum").html(that.ppkNum+=1);
+                        }
+                    }
+                }).on('touchend', function(evt) {
+                    var e = event || evt;
+                    e.preventDefault();
+                })
+            });
+        }
+    }
+   var start = new CatchPumpkin(param);
+   start.init();
+</script>
+</html>

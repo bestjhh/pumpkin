@@ -1,0 +1,396 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+input[type='button'] {
+  -webkit-appearance: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+.support {
+  display: block;
+  text-align: center;
+  font-size: 0.26rem;
+  color: white;
+  margin-bottom: 0.3rem;
+}
+#index {
+  width: 100%;
+  height: 100%;
+  background: url("../img/index-bg.png") #0F061A no-repeat;
+  background-size: 100% auto;
+}
+#index .rule-btn {
+  float: right;
+  margin-top: 0.3rem;
+  background: #FDA606;
+  color: white;
+  padding: 0 0.3rem;
+  font-size: 0.28rem;
+  line-height: 0.5rem;
+  border-radius: 0.07rem 0 0 0.07rem;
+}
+#index .my-prize {
+  padding: 8rem 0 0 0.3rem;
+}
+#index .my-prize .prize-icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-color: #FFCA06;
+  position: relative;
+}
+#index .my-prize .prize-icon:before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.2rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  z-index: 3;
+  background: url("../img/gift-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+#index .my-prize .prize-txt {
+  display: block;
+  font-size: 0.28rem;
+  color: #DD5103;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+}
+#index .start-game {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  width: 3.5rem;
+  margin: 0.2rem auto 0.5rem;
+  background: url("../img/btn-bg.png") no-repeat;
+  background-size: 100% 100%;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+}
+#index .start-game a,
+#index .start-game a:visited {
+  color: #DD5103;
+  font-size: 0.32rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+#index .win {
+  display: none;
+}
+#index .win section {
+  position: absolute;
+  width: 6rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 0.1rem;
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+#index .win section > div.box {
+  border-radius: 0.1rem;
+  border: 1px dashed #FFE087;
+  padding: 0.3rem;
+  box-sizing: border-box;
+}
+#index .win section > div.box h3 {
+  font-size: 0.32rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+#index .win section > div.box h3 span {
+  display: inline-block;
+  width: 2px;
+  height: 0.3rem;
+  background: #DD5204;
+  margin: 0 0.04rem;
+  transform: rotate(15deg);
+  vertical-align: middle;
+}
+#index .win section > div.box .content {
+  max-height: 5rem;
+  min-height: 4rem;
+  overflow: auto;
+}
+#index .win section > div.box .content h4 {
+  font-size: 0.32rem;
+  margin-top: 0.2rem;
+}
+#index .win section > div.box .content p {
+  font-size: 0.28rem;
+  border-bottom: 1px dashed #DE5509;
+  position: relative;
+  padding-left: 0.3rem;
+  line-height: 0.4rem;
+  padding-bottom: 0.15rem;
+  margin-top: 0.15rem;
+}
+#index .win section > div.box .content p:before {
+  content: "";
+  position: absolute;
+  left: 0.05rem;
+  top: 0.15rem;
+  width: 0.1rem;
+  height: 0.1rem;
+  background: #DD5103;
+  border-radius: 50%;
+}
+#index .win section > div.box .content div {
+  text-align: center;
+  line-height: 0.5rem;
+  color: #DD5204;
+  margin-top: 1.5rem;
+}
+#index .win section .close-win {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  background: #DD5103;
+  text-align: center;
+  line-height: 0.4rem;
+  color: white;
+  box-sizing: border-box;
+  font-size: 0.45rem;
+}
+#index .rule .content {
+  max-height: 6rem!important;
+}
+#index .prize p {
+  padding-left: 0!important;
+}
+#index .prize p span {
+  float: right;
+}
+#index .prize p:before {
+  display: none;
+}
+#index .prize .getMoney {
+  height: 1.2rem;
+  line-height: 1.1rem !important;
+  text-align: center;
+  color: #DD5103;
+  font-size: 0.32rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  width: 3.5rem;
+  margin: 0.2rem auto 0;
+  background: url("../img/btn-bg.png") no-repeat;
+  background-size: 100% 100%;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+}
+#game {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+#game .timer {
+  padding: 0.25rem 0.4rem 0;
+}
+#game .timer .pumpNum {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.4rem;
+}
+#game .timer .pumpNum i {
+  display: inline-block;
+  width: 0.68rem;
+  height: 0.68rem;
+  background: url("../img/pumpkin.png") no-repeat;
+  background-size: 100% 100%;
+  vertical-align: -0.1rem;
+}
+#game .timer .pumpNum span {
+  font-size: 0.45rem;
+  color: #DF4911;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+}
+#game .timer .time {
+  text-align: center;
+  font-size: 0.6rem;
+  color: #DF4911;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+}
+#game .run-pumpkin {
+  width: 100%;
+  position: absolute;
+  bottom: 4rem;
+  height: 5rem;
+}
+#game .run-pumpkin span {
+  display: inline-block;
+  width: 1.55rem;
+  height: 1.55rem;
+  background: url("../img/pumpkin.png") no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  right: -1.55rem;
+  top: 1rem;
+}
+#game .run-pumpkin span.on:before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  left: 15%;
+  top: 90%;
+  width: 70%;
+  height: 30%;
+}
+#game .run-pumpkin span:before {
+  content: "";
+  position: absolute;
+  left: 15%;
+  top: 100%;
+  width: 70%;
+  height: 30%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+#game .pan {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  left: calc(50% - 1.5rem);
+  bottom: 0.6rem;
+}
+#game .support {
+  position: absolute;
+  width: 100%;
+  margin-bottom: 0!important;
+  bottom: 0.15rem !important;
+}
+#game .gameOver section {
+  min-height: 5.8rem;
+  background: url("../img/win-bg.png") no-repeat;
+  background-size: 100% 100%;
+}
+#game .win section {
+  position: absolute;
+  width: 6rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+#game .win section h4 {
+  font-size: 0.5rem;
+  color: #DD5103;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+  padding-top: 0.06rem;
+}
+#game .win section p {
+  line-height: 0.75rem;
+}
+#game .win section p:nth-of-type(1) {
+  font-size: 0.34rem;
+  margin: 0.3rem auto;
+}
+#game .win section p.inter {
+  color: #DD5103;
+  font-size: 0.48rem;
+}
+#game .win section p.tip {
+  font-size: 0.28rem;
+}
+#game .win section .btn {
+  display: block;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  color: #DD5103;
+  font-size: 0.32rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  width: 3.5rem;
+  background: url("../img/btn-bg.png") no-repeat;
+  background-size: 100% 100%;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+  position: absolute;
+  left: calc(50% - 1.75rem);
+  top: calc(100% + .45rem);
+}
+#game .win section img {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+#game .getPrize {
+  display: none;
+}
+#game .getPrize section {
+  top: 40%!important;
+  padding-top: 1.95rem;
+  min-height: 5.8rem;
+  width: 6.5rem !important;
+  background: url("../img/prize-bg.png") no-repeat;
+  background-size: 100% 100%;
+}
+#game .getPrize section p {
+  color: #DD5103;
+  text-align: center;
+}
+#game .getPrize section .money {
+  font-size: 0.4rem;
+}
+#game .getPrize section .money span {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+#game .getPrize section .noMoney {
+  font-size: 0.32rem;
+}
+#game .getPrize section .beSure {
+  display: block;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  color: #DD5103;
+  font-size: 0.32rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  width: 3.5rem;
+  background: url("../img/btn-bg.png") no-repeat;
+  background-size: 100% 100%;
+  text-shadow: 0 1px white, 1px 0 white, -1px 0 white, 0 -1px white;
+  position: absolute;
+  left: calc(50% - 1.75rem);
+  top: calc(100% + .45rem);
+}

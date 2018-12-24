@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>万圣狂欢，中大奖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="js/jquery-2.1.3.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/rem.js"></script>
+</head>
+<body>
+    <div id="index">
+        <div class="rule-btn" onclick="$('.rule').show();">活动规则</div>
+        <div class="my-prize" onclick="$('.prize').show();">
+            <i class="prize-icon"></i>
+            <a class="prize-txt">我的奖品</a>
+        </div>
+        <div class="start-game">
+            <a href="game.html">开始游戏</a>
+        </div>
+        <!--规则-->
+        <div class="rule mask win">
+            <section>
+                <div class="box">
+                    <h3>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        活动规则
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </h3>
+                    <div class="content">
+                        <h4>活动时间</h4>
+                        <p>2018年10月26日-2018年10月31日</p>
+                        <h4>活动规则</h4>
+                        <p>1.把行走的南瓜拖到下方下方接住的 地方；</p>
+                        <p>2.动游戏倒计时30s，时间越短南瓜的 速度越快，抓住的南瓜积分达到120分 即可获得抽奖机会；</p>
+                        <p>3.每人每日有3次抽奖机会，分享朋友 圈、好友可各获得一次抽奖机会，每 天一共有5次抽奖机会；</p>
+                        <h4>活动奖品</h4>
+                        <p>一等奖：88元红包       <span style="float: right">10名</span></p>
+                        <p>二等奖：8.8元红包      <span style="float: right">200名</span></p>
+                        <p>三等奖：0.88元红包     <span style="float: right">2000名</span></p>
+                    </div>
+                </div>
+                <div class="close-win" onclick="$('.rule').hide();">×</div>
+            </section>
+        </div>
+        <!--我的奖品-->
+        <div class="prize mask win">
+            <section>
+                <div class="box">
+                    <h3>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        我的奖品
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </h3>
+                    <div class="content">
+                        <p>2018.10.12 17:25 <span>0.88元现金红包</span></p>
+                        <p>2018.10.12 17:25 <span>0.88元现金红包</span></p>
+                        <p>2018.10.12 17:25 <span>0.88元现金红包</span></p>
+                        <div style="display: none">
+                            您目前还没有中奖纪录，参与游戏即可获得抽奖机会哟~
+                        </div>
+                    </div>
+                    <div class="getMoney">
+                        <a>一键领取红包</a>
+                    </div>
+                </div>
+                <div class="close-win" onclick="$('.prize').hide();">×</div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
